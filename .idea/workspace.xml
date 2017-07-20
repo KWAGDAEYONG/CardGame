@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af1e023f-19c5-491c-8ef9-2da0c44a13ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../cardgame/README.md" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../cardgame/src/main/java/user/Field.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../cardgame/src/main/java/user/Hand.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/../cardgame/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -24,6 +21,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/build/classes/main/user/Hand.class" afterPath="$PROJECT_DIR$/../cardgame/build/classes/main/user/Hand.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/build/classes/main/user/User.class" afterPath="$PROJECT_DIR$/../cardgame/build/classes/main/user/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/../cardgame/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/Action/ActionImpl.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/Action/ActionImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/Action/Actions.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/Action/Actions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/GameBoard.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/GameBoard.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/Utility/GameScreen.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/Utility/GameScreen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/card/Card.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/card/Card.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/card/Cards.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/card/Cards.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/user/Deck.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/user/Deck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/out/production/classes/user/User.class" afterPath="$PROJECT_DIR$/../cardgame/out/production/classes/user/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/gradle.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/libraries/Gradle__junit_junit_4_12.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/libraries/Gradle__junit_junit_4_12.xml" />
@@ -34,7 +39,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/modules/cardgame_main.iml" afterPath="$PROJECT_DIR$/../cardgame/.idea/modules/cardgame_main.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/modules/cardgame_test.iml" afterPath="$PROJECT_DIR$/../cardgame/.idea/modules/cardgame_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/uiDesigner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../cardgame/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/README.md" afterPath="$PROJECT_DIR$/../cardgame/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/build.gradle" afterPath="$PROJECT_DIR$/../cardgame/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/../cardgame/gradle/wrapper/gradle-wrapper.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../cardgame/gradlew" afterPath="$PROJECT_DIR$/../cardgame/gradlew" />
@@ -109,8 +116,8 @@
       <file leaf-file-name="ActionImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../cardgame/src/main/java/Action/ActionImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="312">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding>
                 <element signature="e#175#176#0" expanded="true" />
                 <element signature="e#213#214#0" expanded="true" />
@@ -174,8 +181,8 @@
         <entry file="file://$PROJECT_DIR$/../cardgame/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="323">
-                <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+              <first_editor relative-caret-position="38">
+                <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -1067,12 +1074,12 @@
       <updated>1500353629072</updated>
       <workItem from="1500353632377" duration="41511000" />
       <workItem from="1500461760775" duration="27000" />
-      <workItem from="1500461838488" duration="16674000" />
+      <workItem from="1500461838488" duration="16864000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58212000" />
+    <option name="totallyTimeSpent" value="58402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1428,19 +1435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../cardgame/src/main/java/Action/ActionImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../cardgame/src/main/java/Action/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1536,11 +1530,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../cardgame/src/main/java/Action/ActionImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#175#176#0" expanded="true" />
+            <element signature="e#213#214#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../cardgame/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="323">
-            <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <first_editor relative-caret-position="38">
+            <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             <folding />
           </first_editor>
           <second_editor />
