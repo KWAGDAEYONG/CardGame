@@ -18,22 +18,22 @@ public class GameScreen {
         System.out.println("********************************************");
         System.out.println("         Other's hp:"+other.getHp()+"/cost:"+other.getTotalCost()+"           ");
         System.out.print("*");
-        if(other.getField().getFieldCard().isEmpty()){
+        if(other.getField().isEmpty()){
             System.out.print("                빈 필드                 *");
         }else {
-            for (int i = 0; i < other.getField().getFieldCard().size(); i++) {
-                System.out.print(other.getField().getFieldCard().get(i).getName()+"(hp:"+other.getField().getFieldCard().get(i).getHp()+"/ap:"+other.getField().getFieldCard().get(i).getAp()+")  ");
+            for (int i = 0; i < other.getField().size(); i++) {
+                System.out.print(other.getField().get(i).getName()+"(hp:"+other.getField().get(i).getHp()+"/ap:"+other.getField().get(i).getAp()+")  ");
             }
             System.out.print("*");
         }
         System.out.println();
         System.out.println("==============================================");
         System.out.print("*");
-        if(my.getField().getFieldCard().isEmpty()){
+        if(my.getField().isEmpty()){
             System.out.print("                빈 필드                 *");
         }else {
-            for (int i = 0; i < my.getField().getFieldCard().size(); i++) {
-                System.out.print(my.getField().getFieldCard().get(i).getName()+"(hp:"+my.getField().getFieldCard().get(i).getHp()+"/ap:"+my.getField().getFieldCard().get(i).getAp()+")  ");
+            for (int i = 0; i < my.getField().size(); i++) {
+                System.out.print(my.getField().get(i).getName()+"(hp:"+my.getField().get(i).getHp()+"/ap:"+my.getField().get(i).getAp()+")  ");
             }
             System.out.print("*");
         }

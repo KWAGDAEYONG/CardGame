@@ -39,11 +39,6 @@ public class Card implements Cloneable{
         return name;
     }
 
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
     public int getHp() {
         return hp;
     }
@@ -54,6 +49,11 @@ public class Card implements Cloneable{
 
     public int getAp() {
         return ap;
+    }
+
+    public void attackEffect(Card attacker, Card target){
+        attacker.hp = attacker.hp-target.ap;
+        target.hp = target.hp-attacker.ap;
     }
 
     @Override
