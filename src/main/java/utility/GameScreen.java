@@ -1,6 +1,6 @@
-package Utility;
+package utility;
 
-import user.User;
+import model.User;
 
 /**
  * Created by user on 2017-07-18.
@@ -16,6 +16,7 @@ public class GameScreen {
 
     public void show(){
         System.out.println("********************************************");
+        System.out.println(other.getInGameDeck().getHero().getClassName());
         System.out.println("         Other's hp:"+other.getHp()+"/cost:"+other.getTotalCost()+"           ");
         System.out.print("*");
         if(other.getField().isEmpty()){
@@ -39,6 +40,7 @@ public class GameScreen {
         }
         System.out.println();
         System.out.println("         my hp:"+my.getHp()+"/cost:"+my.getUseCost()+"           ");
+        System.out.println(my.getInGameDeck().getHero().getClassName());
         System.out.println("********************************************");
 
     }

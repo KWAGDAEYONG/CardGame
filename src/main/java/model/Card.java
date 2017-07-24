@@ -1,4 +1,4 @@
-package card;
+package model;
 
 /**
  * Created by user on 2017-07-18.
@@ -12,7 +12,7 @@ public class Card implements Cloneable{
     private boolean firstTurn=true;
 
 
-    Card(String name,int hp, int cost, int ap){
+    public Card(String name,int hp, int cost, int ap){
         this.name = name;
         this.hp = hp;
         this.cost = cost;

@@ -1,8 +1,7 @@
-import Action.ActionImpl;
-import Action.Actions;
-import Utility.SetTempDeck;
-import card.Card;
-import user.User;
+import action.ActionImpl;
+import action.Actions;
+import model.Card;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,7 @@ public class Game {
 
         //game start!
         System.out.println("게임 시작");
+        System.out.println(player1.getInGameDeck().getHero().getClassName()+"! 그 상대는.."+player2.getInGameDeck().getHero().getClassName()+"!");
         int i = 1;
         while(!isGameOver(player1,player2)){
             System.out.println(i+"번째 턴");
@@ -73,16 +73,20 @@ public class Game {
             System.out.println("어떻게 하시겠습니까?");
             System.out.println("1.핸드카드 사용");
             System.out.println("2.필드카드 사용");
-            System.out.println("3.턴 넘기기");
+            System.out.println("3.영웅능력 사용("+player.getInGameDeck().getHero().getClassName()+")");
+            System.out.println("4.턴넘기기");
             c = scanner.nextInt();
             switch (c) {
                 case 1:
-                    action.useHand(player);
+                    action.useHand(player,scanner);
                     break;
                 case 2:
-                    action.useField(player,waiter);
+                    action.useField(player,waiter,scanner);
                     break;
                 case 3:
+                    action.heroAbility(player,waiter,player.getInGameDeck().getHero(),action);
+                    break;
+                case 4:
                     c = -1;
                     turnChange(player,waiter);
                     break;
@@ -109,10 +113,11 @@ public class Game {
     public void readyForGame(User player1, User player2)throws CloneNotSupportedException{
 
         //덱 셋팅
-        SetTempDeck.setDeck(player1);
-        SetTempDeck.choiceIngameDeck(player1, scanner);
-        SetTempDeck.setDeck(player2);
-        SetTempDeck.choiceIngameDeck(player2, scanner);
+        player1.makeDeck(player1, scanner);
+        player1.choiceDeckForGame(player1, scanner);
+
+        player2.makeDeck(player2, scanner);
+        player2.choiceDeckForGame(player2, scanner);
 
         //필드 셋팅
         List<Card> player1Field = new ArrayList<Card>();

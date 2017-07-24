@@ -1,4 +1,6 @@
-package card;
+package contents;
+
+import model.Card;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,12 +1,11 @@
-package user;
+package model;
 
-import Utility.GameScreen;
-import card.Card;
+import utility.GameScreen;
+import contents.Cards;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
+
+import static java.util.Collections.shuffle;
 
 /**
  * Created by user on 2017-07-18.
@@ -23,6 +22,15 @@ public class User {
     private List<Card> field;
     private boolean turn;
     private GameScreen gameScreen;
+    private Deck inGameDeck;
+
+    public void setInGameDeck(Deck inGameDeck) {
+        this.inGameDeck = inGameDeck;
+    }
+
+    public Deck getInGameDeck() {
+        return inGameDeck;
+    }
 
     public void setPlayer(String player) {
         this.player = player;
@@ -103,13 +111,12 @@ public class User {
         this.hand = hand;
     }
 
-    public void useHand(User user){
+    public void useHand(User user, Scanner scanner){
         hand = user.hand;
         if(hand.isEmpty()){
             System.out.println("핸드가 없습니다");
             return;
         }
-        Scanner scanner = new Scanner(System.in);
         int i;
         System.out.println("어떤 카드를 사용하시겠습니까?"+"사용할 수 있는 코스트:"+user.getUseCost());
         for(i = 0; i<hand.size(); i++){
@@ -127,7 +134,7 @@ public class User {
             return;
         }
         user.field.add(target);
-        user.setUseCost(user.getUseCost()-target.getCost());
+        useCost(user,target.getCost());
         System.out.println("필드에 " + target.getName() + "을(를) 소환합니다.");
         hand.remove(cardNum);
     }
@@ -141,9 +148,7 @@ public class User {
         user.hand.add(drawed);
     }
 
-    public void useField(User player, User waiter){
-        Scanner scanner = new Scanner(System.in);
-
+    public void useField(User player, User waiter, Scanner scanner){
         if(player.field.isEmpty()){
             System.out.println("필드에 하수인이 없습니다");
             return;
@@ -226,4 +231,89 @@ public class User {
         }
         return true;
     }
+
+    public void makeDeck(User player, Scanner scanner){
+        Cards cards = new Cards();
+        cards.setCardList();
+        //카드 리스트 로드
+
+        Deck deck = new Deck();
+        System.out.println("덱을 생성합니다.");
+        deck.choiceHeroClass(player, deck ,scanner);
+
+        List<Card> deckList = new ArrayList<Card>();
+
+        Map<String,Card> cardList = cards.getCardList();
+
+        deckList.add(cardList.get("병아리"));
+        deckList.add(cardList.get("지렁이"));
+        deckList.add(cardList.get("붕어"));
+        deckList.add(cardList.get("닭"));
+        deckList.add(cardList.get("강아지"));
+        deckList.add(cardList.get("고양이"));
+        deckList.add(cardList.get("큰개"));
+        deckList.add(cardList.get("살쾡이"));
+        deckList.add(cardList.get("여우"));
+        deckList.add(cardList.get("늑대"));
+        deckList.add(cardList.get("타조"));
+        deckList.add(cardList.get("사냥개"));
+        deckList.add(cardList.get("곰"));
+        deckList.add(cardList.get("하마"));
+        deckList.add(cardList.get("상어"));
+        deckList.add(cardList.get("호랑이"));
+        deckList.add(cardList.get("사자"));
+        deckList.add(cardList.get("치타"));
+        deckList.add(cardList.get("코끼리"));
+        deckList.add(cardList.get("코뿔소"));
+        deckList.add(cardList.get("독수리"));
+        deckList.add(cardList.get("총잡이"));
+        deckList.add(cardList.get("헌터"));
+        deckList.add(cardList.get("사육사"));
+        deckList.add(cardList.get("용"));
+        deckList.add(cardList.get("불사조"));
+        deckList.add(cardList.get("십장생"));
+        deckList.add(cardList.get("개발자"));
+        deckList.add(cardList.get("엔지니어"));
+        deckList.add(cardList.get("곽대용"));
+
+        System.out.println("편의상, 덱의 카드리스트는 자동생성합니다.");
+        System.out.println("덱의 이름을 입력해주세요");
+        String name = scanner.next();
+        deck.setDeckname(name);
+
+        if(deckList.size()!=30){
+            System.out.println("카드의 장수가 맞지 않습니다");
+            //이후 클라이언트에서 다시 카드선택화면으로 돌리면서 덱 리스트에 저장되지 않도록 처리
+        }
+
+        deck.setCards(deckList);
+        player.addDeck(deck);
+
+    }
+
+    public void choiceDeckForGame(User player, Scanner scanner)throws CloneNotSupportedException{
+        System.out.println(player.getPlayer()+"님, 사용하실 덱을 선택해주세요");
+
+        for(int i = 0; i<player.getDeckList().size(); i++){
+            System.out.println(i+". "+player.getDeckList().get(i).getDeckname());
+        }
+        int sc = scanner.nextInt();
+        Deck inGameDeck = player.getDeckList().get(sc);
+        player.setInGameDeck(inGameDeck);
+        List<Card> DeckForUse = player.getDeckList().get(sc).getCards();
+
+        shuffle(DeckForUse);
+        Stack<Card> useDeck = new Stack<Card>();
+
+        for(int i = 0; i<DeckForUse.size(); i++){
+            useDeck.add((Card)DeckForUse.get(i).clone());
+        }
+        player.setUseDeck(useDeck);
+    }
+
+    public void useCost(User player, int useCost){
+        player.useCost -= useCost;
+    }
+
+
 }
