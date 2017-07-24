@@ -7,7 +7,8 @@ import java.util.Map;
  * Created by user on 2017-07-18.
  */
 public class Cards {
-    public Map<String, Card> cardList;
+    private Map<String, Card> cardList;
+
     public void setCardList(){
         cardList = new HashMap<String, Card>();
         cardList.put("병아리",new Card("병아리",2,1,2));
@@ -43,4 +44,7 @@ public class Cards {
 
     }
 
+    public Map<String, Card> getCardList() {
+        return cardList;
+    }
 }

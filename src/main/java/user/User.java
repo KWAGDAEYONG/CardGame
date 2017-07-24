@@ -16,12 +16,21 @@ public class User {
     private int hp = 30;
     private int totalCost = 0;
     private int useCost;
+    private String player;
     private List<Deck> deckList = new ArrayList<Deck>();
     private Stack<Card> useDeck;
     private List<Card> hand;
     private List<Card> field;
     private boolean turn;
     private GameScreen gameScreen;
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
 
     public void addDeck(Deck deck){
         deckList.add(deck);
