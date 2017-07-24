@@ -28,8 +28,8 @@ public class ActionImpl implements Actions {
     }
 
     @Override
-    public void heroAbility(User player, User waiter, Hero hero, Actions actions){
-        hero.useAbility(player, waiter, hero, actions);
+    public void heroAbility(User player, User waiter, Hero hero, Actions actions, Scanner scanner){
+        hero.useAbility(player, waiter, hero, actions, scanner);
     }
 
 }

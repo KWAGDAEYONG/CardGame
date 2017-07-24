@@ -18,6 +18,9 @@ public class GameScreen {
         System.out.println("********************************************");
         System.out.println(other.getInGameDeck().getHero().getClassName());
         System.out.println("         Other's hp:"+other.getHp()+"/cost:"+other.getTotalCost()+"           ");
+        if(other.getArmor()!=0){
+            System.out.println("Other's armor:"+other.getArmor());
+        }
         System.out.print("*");
         if(other.getField().isEmpty()){
             System.out.print("                빈 필드                 *");
@@ -39,6 +42,9 @@ public class GameScreen {
             System.out.print("*");
         }
         System.out.println();
+        if(my.getArmor()!=0){
+            System.out.println("my armor:"+my.getArmor());
+        }
         System.out.println("         my hp:"+my.getHp()+"/cost:"+my.getUseCost()+"           ");
         System.out.println(my.getInGameDeck().getHero().getClassName());
         System.out.println("********************************************");

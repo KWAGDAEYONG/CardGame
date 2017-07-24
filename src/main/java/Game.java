@@ -66,6 +66,10 @@ public class Game {
                 player.getField().get(k).setFirstTurn(false);
             }
         }
+
+        //영웅능력을 사용할 수 있도록 셋팅
+        player.setUseHeroAbility(false);
+
         int c = 0;
         while (c!=-1) {
             player.setGameScreen(player, waiter);
@@ -84,7 +88,7 @@ public class Game {
                     action.useField(player,waiter,scanner);
                     break;
                 case 3:
-                    action.heroAbility(player,waiter,player.getInGameDeck().getHero(),action);
+                    action.heroAbility(player,waiter,player.getInGameDeck().getHero(),action, scanner);
                     break;
                 case 4:
                     c = -1;

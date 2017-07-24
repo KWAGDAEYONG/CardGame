@@ -12,9 +12,11 @@ import static java.util.Collections.shuffle;
  */
 public class User {
     final int maxCost = 10;
+    private int maxHp = 30;
     private int hp = 30;
     private int totalCost = 0;
     private int useCost;
+    private int armor=0;
     private String player;
     private List<Deck> deckList = new ArrayList<Deck>();
     private Stack<Card> useDeck;
@@ -23,6 +25,23 @@ public class User {
     private boolean turn;
     private GameScreen gameScreen;
     private Deck inGameDeck;
+    private boolean useHeroAbility;
+
+    public void setUseHeroAbility(boolean useHeroAbility) {
+        this.useHeroAbility = useHeroAbility;
+    }
+
+    public boolean isUseHeroAbility() {
+        return useHeroAbility;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
 
     public void setInGameDeck(Deck inGameDeck) {
         this.inGameDeck = inGameDeck;
@@ -90,6 +109,10 @@ public class User {
 
     public void setHp(int hp) {
         this.hp = hp;
+        if(this.hp>maxHp){
+            this.hp = maxHp;
+            System.out.println("이미 최대체력 입니다!");
+        }
     }
 
     public void setTotalCost(int totalCost) {
@@ -205,7 +228,7 @@ public class User {
         }
         if(waiter.field.size()==targetNum){
             //명치 공격
-            waiter.setHp(waiter.getHp()-attacker.getAp());
+            bodyAttack(waiter,attacker.getAp());
             attacker.setAlreadyAttack(true);
         }else{
             //필드 공격
@@ -313,6 +336,24 @@ public class User {
 
     public void useCost(User player, int useCost){
         player.useCost -= useCost;
+    }
+
+    public void addArmor(User player, int armor){
+        player.armor += armor;
+    }
+
+    public void bodyAttack(User waiter, int ap){
+        if(waiter.armor!=0){
+            if(ap<waiter.armor){
+                waiter.setArmor(waiter.armor-ap);
+            }else{
+                waiter.setHp(waiter.hp-(ap-waiter.armor));
+                waiter.setArmor(0);
+            }
+        }else {
+            waiter.setHp(waiter.hp - ap);
+        }
+
     }
 
 

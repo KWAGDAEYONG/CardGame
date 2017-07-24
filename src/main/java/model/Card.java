@@ -8,6 +8,7 @@ public class Card implements Cloneable{
     private int hp;
     private int cost;
     private int ap;
+    private int maxhp;
     private boolean alreadyAttack;
     private boolean firstTurn=true;
 
@@ -17,6 +18,15 @@ public class Card implements Cloneable{
         this.hp = hp;
         this.cost = cost;
         this.ap = ap;
+        this.maxhp = hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+        if(this.hp > maxhp){
+            this.hp = maxhp;
+            System.out.println("이미 최대체력 입니다!");
+        }
     }
 
     public void setFirstTurn(boolean firstTurn) {
