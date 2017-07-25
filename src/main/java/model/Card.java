@@ -66,6 +66,10 @@ public class Card implements Cloneable{
         target.hp = target.hp-attacker.ap;
     }
 
+    public void heal(Card card, int ap){
+        card.setHp(card.hp+ap);
+    }
+
     @Override
     public Object clone()throws CloneNotSupportedException{
         return super.clone();
