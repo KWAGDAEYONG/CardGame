@@ -100,18 +100,13 @@ public class Game {
                     break;
                 case 5:
                     c = -1;
-                    turnChange(player,waiter);
+                    action.turnChange(player,waiter);
                     break;
             }
             if(isGameOver(player,waiter)){
                 break;
             }
         }
-    }
-
-    public void turnChange(User player, User waiter){
-        player.setTurn(false);
-        waiter.setTurn(true);
     }
 
     public boolean isGameOver(User player1, User player2){

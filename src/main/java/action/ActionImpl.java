@@ -37,4 +37,8 @@ public class ActionImpl implements Actions {
         player.useWeapon(player, waiter, scanner);
     }
 
+    @Override
+    public void turnChange(User player, User waiter){
+        player.turnChange(player, waiter);
+    }
 }

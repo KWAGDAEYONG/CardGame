@@ -219,6 +219,18 @@ public class User {
 
     }
 
+    public void turnChange(User player, User waiter){
+        for(int i = 0; i<player.getField().size(); i++){
+            if(player.getField().get(i).getAbility()=="힐토"){
+                for(int k = 0; k<player.getField().size(); k++){
+                    player.getField().get(k).heal(player.getField().get(k),1);
+                }
+            }
+        }
+        player.setTurn(false);
+        waiter.setTurn(true);
+    }
+
     public boolean canUseHandCard(User player, Card card) {
 
         if (card.getCost() > player.getUseCost()) {
