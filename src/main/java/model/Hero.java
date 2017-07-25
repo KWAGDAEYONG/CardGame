@@ -3,9 +3,9 @@ package model;
 import action.Actions;
 import contents.Weapons;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 
 public class Hero {
     private String className;
@@ -22,6 +22,7 @@ public class Hero {
         weapons.setWeaponList();
 
         Map<String, Weapon> weaponList = weapons.getWeaponList();
+
 
         if(!player.canUseHeroAbility(player)){
             return;
@@ -48,7 +49,6 @@ public class Hero {
                 player.useCost(player,2);
                 System.out.println("하급 치유");
                 break;
-
             case "드루이드" :
                 player.equipWeapon(player,weaponList.get("드루영능"));
                 player.addArmor(player,1);
@@ -63,9 +63,12 @@ public class Hero {
                 player.setHp(player.getHp()-2);
                 player.useCost(player,2);
                 System.out.println("생명력 전환");
-            case "주술사" : break;
+            case "주술사" :
+                player.sharmanAbility(player);
+                System.out.println("토템소환");
+                break;
             case "성기사" :
-                player.getField().add(new Card("신병",1,1,1));
+                player.getField().add(new Card("신병",1,1,1,"일반"));
                 player.useCost(player,2);
                 System.out.println("신병소환");
                 break;

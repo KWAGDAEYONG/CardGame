@@ -161,7 +161,7 @@ public class User {
         int i;
         System.out.println("어떤 카드를 사용하시겠습니까?" + "사용할 수 있는 코스트:" + user.getUseCost());
         for (i = 0; i < hand.size(); i++) {
-            System.out.println(i + ". " + hand.get(i).getName() + "(hp:" + hand.get(i).getHp() + "/ap:" + hand.get(i).getAp() + "/cost:" + hand.get(i).getCost() + ")");
+            System.out.println(i + ". " + hand.get(i).getName() + "(hp:" + hand.get(i).getHp() + "/ap:" + hand.get(i).getAp() + "/cost:" + hand.get(i).getCost() +"["+hand.get(i).getAbility()+"]"+ ")");
         }
         System.out.println(i + ". 돌아가기");
         int cardNum = scanner.nextInt();
@@ -178,6 +178,10 @@ public class User {
         useCost(user, target.getCost());
         System.out.println("필드에 " + target.getName() + "을(를) 소환합니다.");
         hand.remove(cardNum);
+
+        if(target.getAbility()=="돌진"){
+            target.rush(target);
+        }
     }
 
     public void draw(User user) {
@@ -197,7 +201,7 @@ public class User {
         System.out.println("어떤 카드를 사용하시겠습니까?");
         int i;
         for (i = 0; i < player.field.size(); i++) {
-            System.out.println(i + ". " + player.field.get(i).getName() + "(hp:" + player.field.get(i).getHp() + "/ap:" + player.field.get(i).getAp() + ")");
+            System.out.println(i + ". " + player.field.get(i).getName() + "(hp:" + player.field.get(i).getHp() + "/ap:" + player.field.get(i).getAp() +"["+player.field.get(i).getAbility()+"]"+ ")");
         }
         System.out.println(i + ". 돌아가기");
 
@@ -233,25 +237,50 @@ public class User {
     public void attack(User player, int cardNum, Card attacker, User waiter, Scanner scanner) {
         System.out.println("어디를 공격하시겠습니까?");
         int k;
+        boolean isTunt = false;
         for (k = 0; k < waiter.field.size(); k++) {
-            System.out.println(k + ". " + waiter.field.get(k).getName() + "(hp:" + waiter.field.get(k).getHp() + "/ap:" + waiter.field.get(k).getAp() + ")");
+            System.out.println(k + ". " + waiter.field.get(k).getName() + "(hp:" + waiter.field.get(k).getHp() + "/ap:" + waiter.field.get(k).getAp() +"["+waiter.field.get(k).getAbility()+"]"+ ")");
+            if(waiter.field.get(k).getAbility()=="도발"){
+                isTunt = true;
+            }else{
+                isTunt = false;
+            }
         }
         System.out.println(k + ". 명치");
         System.out.println(++k + ". 돌아가기");
         scanner.nextLine();
 
         int targetNum = scanner.nextInt();
+
         if (targetNum == waiter.field.size() + 1) {
             return;
         }
+        if(isTunt) {
+            if (!tunt(waiter.field, targetNum)) {
+                return;
+            }
+        }
+
         if (waiter.field.size() == targetNum) {
             //명치 공격
             bodyAttack(waiter, attacker.getAp());
-            attacker.setAlreadyAttack(true);
+
+            if(attacker.getAbility()=="질풍"){
+                attacker.gale(attacker);
+            }else {
+                attacker.setAlreadyAttack(true);
+            }
+
         } else {
             //필드 공격
             attacker.attackEffect(attacker, waiter.field.get(targetNum));
-            attacker.setAlreadyAttack(true);
+
+            if(attacker.getAbility()=="질풍"){
+                attacker.gale(attacker);
+            }else {
+                attacker.setAlreadyAttack(true);
+            }
+
             if (attacker.getHp() <= 0) {
                 player.field.remove(cardNum);
             }
@@ -269,6 +298,9 @@ public class User {
         if (attacker.isAlreadyAttack()) {
             System.out.println("이미 공격한 하수인입니다");
             return false;
+        }
+        if(attacker.getAp()==0){
+            System.out.println("공격력이 0인 하수인은 공격할 수 없습니다.");
         }
         return true;
     }
@@ -523,9 +555,44 @@ public class User {
         }
     }
 
+    public void sharmanAbility(User player){
+        List<Card> totems = new ArrayList<Card>();
+        totems.add(new Card("불의토템",1,1,1,"일반"));
+        totems.add(new Card("도발토템",2,1,0,"도발"));
+        totems.add(new Card("회복토템",2,1,0,"힐토"));
+        totems.add(new Card("천벌토템",2,1,0,"주문공격력"));
+
+        shuffle(totems);
+
+        int totemIndex = 0;
+        Card totem = totems.get(totemIndex);
+        int k = 0;
+        for(int i = 0; i<player.field.size(); i++){
+            if(player.field.get(i).getName()==totem.getName()){
+                totemIndex++;
+                if(totemIndex==4){
+                    System.out.println("필드에 토템 4가지종류가 모두 소환되어 있습니다.");
+                    return;
+                }
+                totem = totems.get(totemIndex);
+            }
+
+            if(player.field.get(i).getName()=="불의토템"||player.getField().get(i).getName()=="회복토템"||player.getField().get(i).getName()=="도발토템"||player.getField().get(i).getName()=="천벌토템"){
+                k++;
+            }
+            if(k==4){
+                System.out.println("필드에 토템 4가지종류가 모두 소환되어 있습니다.");
+                return;
+            }
+            player.useCost(player, 2);
+        }
+        player.getField().add(totem);
+    }
+
     public void attackField(List<Card> field, int index, int ap){
         Card target = field.get(index);
-        target.setHp(target.getHp()-ap);
+        target.shield(target,ap);
+        //target.setHp(target.getHp()-ap);
 
         if(target.getHp()<=0){
             field.remove(index);
@@ -550,12 +617,24 @@ public class User {
 
         System.out.println("대상을 선택하세요");
         int i = 0;
+        boolean isTunt = false;
         for(i = 0; i<waiter.field.size(); i++){
-            System.out.println(i+". "+waiter.getField().get(i).getName());
+            System.out.println(i+". "+waiter.getField().get(i).getName()+"["+waiter.field.get(i).getAbility()+"]");
+            if(waiter.getField().get(i).getAbility()=="도발"){
+                isTunt = true;
+            }else{
+                isTunt = false;
+            }
         }
         System.out.println(i+". 명치");
 
         int sc = scanner.nextInt();
+
+        if(isTunt) {
+            if (!tunt(waiter.field, sc)) {
+                return;
+            }
+        }
 
         if(sc==waiter.field.size()){
             //명치공격
@@ -573,6 +652,19 @@ public class User {
         }
         player.useWeapon = true;
     }
+
+    public boolean tunt(List<Card> field, int index){
+        if(index==field.size()){
+            System.out.println("상대 필드에 도발인 하수인이 있으면 먼저 제거해야 합니다.");
+            return false;
+        }
+        if(field.get(index).getAbility()!="도발"){
+            System.out.println("상대 필드에 도발인 하수인이 있으면 먼저 제거해야 합니다.");
+            return false;
+        }
+        return true;
+    }
+
 }
 
 

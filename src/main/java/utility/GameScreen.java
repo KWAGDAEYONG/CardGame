@@ -29,7 +29,7 @@ public class GameScreen {
             System.out.print("                빈 필드                 *");
         }else {
             for (int i = 0; i < other.getField().size(); i++) {
-                System.out.print(other.getField().get(i).getName()+"(hp:"+other.getField().get(i).getHp()+"/ap:"+other.getField().get(i).getAp()+")  ");
+                System.out.print(other.getField().get(i).getName()+"(hp:"+other.getField().get(i).getHp()+"/ap:"+other.getField().get(i).getAp()+"["+other.getField().get(i).getAbility()+"]"+")  ");
             }
             System.out.print("*");
         }
@@ -40,7 +40,7 @@ public class GameScreen {
             System.out.print("                빈 필드                 *");
         }else {
             for (int i = 0; i < my.getField().size(); i++) {
-                System.out.print(my.getField().get(i).getName()+"(hp:"+my.getField().get(i).getHp()+"/ap:"+my.getField().get(i).getAp()+")  ");
+                System.out.print(my.getField().get(i).getName()+"(hp:"+my.getField().get(i).getHp()+"/ap:"+my.getField().get(i).getAp()+"["+my.getField().get(i).getAbility()+"]"+")  ");
             }
             System.out.print("*");
         }

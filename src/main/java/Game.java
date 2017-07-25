@@ -37,7 +37,6 @@ public class Game {
             }else{
                 System.out.println("player2의 턴!");
                 System.out.println("player2 드로우");
-                action.draw(player2);
                 gamePlay(player2,player1,action);
             }
             i++;
@@ -148,7 +147,7 @@ public class Game {
         //핸드 셋팅
         List<Card> player1sHand = new ArrayList<Card>();
 
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<3; i++){
             player1sHand.add(player1.getUseDeck().pop());
         }
         player1.setHand(player1sHand);

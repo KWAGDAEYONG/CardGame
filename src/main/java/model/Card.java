@@ -9,16 +9,26 @@ public class Card implements Cloneable{
     private int cost;
     private int ap;
     private int maxhp;
+    private String ability;
+    private int attackCountForGale=2;
     private boolean alreadyAttack;
     private boolean firstTurn=true;
 
-
-    public Card(String name,int hp, int cost, int ap){
+    public Card(String name,int hp, int cost, int ap, String ability){
         this.name = name;
         this.hp = hp;
         this.cost = cost;
         this.ap = ap;
         this.maxhp = hp;
+        this.ability = ability;
+    }
+
+    public void setAbility(String ability) {
+        this.ability = ability;
+    }
+
+    public String getAbility() {
+        return ability;
     }
 
     public void setHp(int hp) {
@@ -62,12 +72,34 @@ public class Card implements Cloneable{
     }
 
     public void attackEffect(Card attacker, Card target){
-        attacker.hp = attacker.hp-target.ap;
-        target.hp = target.hp-attacker.ap;
+        shield(attacker, target.ap);
+        shield(target, attacker.ap);
     }
 
     public void heal(Card card, int ap){
         card.setHp(card.hp+ap);
+    }
+
+    public void shield(Card card, int ap){
+        if(card.ability=="천상의보호막"){
+            card.ability="일반";
+        }else{
+            card.hp = card.hp-ap;
+        }
+    }
+
+    public void rush(Card card){
+        card.firstTurn = false;
+    }
+
+    public void gale(Card attacker){
+        System.out.println("질풍!");
+        System.out.println(attacker.attackCountForGale);
+        if(attacker.attackCountForGale!=1){
+            --attacker.attackCountForGale;
+        }else{
+            attacker.alreadyAttack = true;
+        }
     }
 
     @Override
