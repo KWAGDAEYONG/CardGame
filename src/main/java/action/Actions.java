@@ -13,4 +13,5 @@ public interface Actions {
     void draw(User user);
     void useField(User player1, User waiter, Scanner scanner);
     void heroAbility(User player, User waiter, Hero hero, Actions actions, Scanner scanner);
+    void useWeapon(User player, User waiter, Scanner scanner);
 }

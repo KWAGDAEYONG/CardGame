@@ -18,6 +18,9 @@ public class GameScreen {
         System.out.println("********************************************");
         System.out.println(other.getInGameDeck().getHero().getClassName());
         System.out.println("         Other's hp:"+other.getHp()+"/cost:"+other.getTotalCost()+"           ");
+        if(other.getWeapon()!=null){
+            System.out.println("Other's weapon:"+other.getWeapon().getName()+"(회수:"+other.getWeapon().getCount()+"/공격력:"+other.getWeapon().getAp()+")");
+        }
         if(other.getArmor()!=0){
             System.out.println("Other's armor:"+other.getArmor());
         }
@@ -44,6 +47,9 @@ public class GameScreen {
         System.out.println();
         if(my.getArmor()!=0){
             System.out.println("my armor:"+my.getArmor());
+        }
+        if(my.getWeapon()!=null){
+            System.out.println("my weapon:"+my.getWeapon().getName()+"(회수:"+my.getWeapon().getCount()+"/공격력:"+my.getWeapon().getAp()+")");
         }
         System.out.println("         my hp:"+my.getHp()+"/cost:"+my.getUseCost()+"           ");
         System.out.println(my.getInGameDeck().getHero().getClassName());

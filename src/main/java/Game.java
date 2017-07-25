@@ -1,7 +1,9 @@
 import action.ActionImpl;
 import action.Actions;
+import contents.Weapons;
 import model.Card;
 import model.User;
+import model.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,9 @@ public class Game {
         //영웅능력을 사용할 수 있도록 셋팅
         player.setUseHeroAbility(false);
 
+        //무기를 사용할 수 있도록 셋팅
+        player.setUseWeapon(false);
+
         int c = 0;
         while (c!=-1) {
             player.setGameScreen(player, waiter);
@@ -78,7 +83,8 @@ public class Game {
             System.out.println("1.핸드카드 사용");
             System.out.println("2.필드카드 사용");
             System.out.println("3.영웅능력 사용("+player.getInGameDeck().getHero().getClassName()+")");
-            System.out.println("4.턴넘기기");
+            System.out.println("4.본체로 직접공격");
+            System.out.println("5.턴넘기기");
             c = scanner.nextInt();
             switch (c) {
                 case 1:
@@ -91,6 +97,9 @@ public class Game {
                     action.heroAbility(player,waiter,player.getInGameDeck().getHero(),action, scanner);
                     break;
                 case 4:
+                    action.useWeapon(player,waiter,scanner);
+                    break;
+                case 5:
                     c = -1;
                     turnChange(player,waiter);
                     break;
@@ -115,6 +124,10 @@ public class Game {
     }
 
     public void readyForGame(User player1, User player2)throws CloneNotSupportedException{
+
+        //도적과 드루이드 영웅능력을 위한 기본 무기 로드
+        Weapons weapons = new Weapons();
+        weapons.setWeaponList();
 
         //덱 셋팅
         player1.makeDeck(player1, scanner);

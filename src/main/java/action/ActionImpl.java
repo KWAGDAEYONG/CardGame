@@ -32,4 +32,9 @@ public class ActionImpl implements Actions {
         hero.useAbility(player, waiter, hero, actions, scanner);
     }
 
+    @Override
+    public void useWeapon(User player, User waiter, Scanner scanner){
+        player.useWeapon(player, waiter, scanner);
+    }
+
 }

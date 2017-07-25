@@ -17,7 +17,6 @@ public class User {
     private int totalCost = 0;
     private int useCost;
     private int armor = 0;
-    private int ap = 0;
     private String player;
     private List<Deck> deckList = new ArrayList<Deck>();
     private Stack<Card> useDeck;
@@ -27,6 +26,24 @@ public class User {
     private GameScreen gameScreen;
     private Deck inGameDeck;
     private boolean useHeroAbility;
+    private Weapon weapon;
+    private boolean useWeapon;
+
+    public void setUseWeapon(boolean useWeapon) {
+        this.useWeapon = useWeapon;
+    }
+
+    public boolean isUseWeapon() {
+        return useWeapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
 
     public void setUseHeroAbility(boolean useHeroAbility) {
         this.useHeroAbility = useHeroAbility;
@@ -42,14 +59,6 @@ public class User {
 
     public int getArmor() {
         return armor;
-    }
-
-    public void setAp(int ap) {
-        this.ap = ap;
-    }
-
-    public int getAp() {
-        return ap;
     }
 
     public void setInGameDeck(Deck inGameDeck) {
@@ -521,6 +530,48 @@ public class User {
         if(target.getHp()<=0){
             field.remove(index);
         }
+    }
+
+    public void equipWeapon(User player, Weapon weapon){
+        player.weapon = weapon;
+    }
+
+    public void useWeapon(User player, User waiter, Scanner scanner){
+        if(player.weapon==null){
+            System.out.println("무기가 없습니다.");
+            return;
+        }
+        if(player.useWeapon){
+            System.out.println("이미 공격하셨습니다.");
+            return;
+        }
+
+        int ap = player.weapon.getAp();
+
+        System.out.println("대상을 선택하세요");
+        int i = 0;
+        for(i = 0; i<waiter.field.size(); i++){
+            System.out.println(i+". "+waiter.getField().get(i).getName());
+        }
+        System.out.println(i+". 명치");
+
+        int sc = scanner.nextInt();
+
+        if(sc==waiter.field.size()){
+            //명치공격
+            bodyAttack(waiter, ap);
+        }else{
+            //필드 공격
+            attackField(waiter.field, sc, ap);
+            bodyAttack(player, waiter.field.get(sc).getAp());
+        }
+
+        player.weapon.setCount(player.weapon.getCount()-1);
+
+        if(player.weapon.getCount()==0){
+            player.weapon = null;
+        }
+        player.useWeapon = true;
     }
 }
 

@@ -1,7 +1,10 @@
 package model;
 
 import action.Actions;
+import contents.Weapons;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Hero {
@@ -15,6 +18,10 @@ public class Hero {
     }
 
     public void useAbility(User player, User waiter, Hero hero, Actions actions, Scanner scanner){
+        Weapons weapons = new Weapons();
+        weapons.setWeaponList();
+
+        Map<String, Weapon> weaponList = weapons.getWeaponList();
 
         if(!player.canUseHeroAbility(player)){
             return;
@@ -43,10 +50,14 @@ public class Hero {
                 break;
 
             case "드루이드" :
-                player.useCost(player,2);
+                player.equipWeapon(player,weaponList.get("드루영능"));
                 player.addArmor(player,1);
+                player.useCost(player,2);
                 break;
-            case "도적" : break;
+            case "도적" :
+                player.equipWeapon(player, weaponList.get("도적영능"));
+                player.useCost(player,2);
+                break;
             case "흑마법사" :
                 actions.draw(player);
                 player.setHp(player.getHp()-2);
